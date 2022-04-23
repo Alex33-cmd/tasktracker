@@ -15,9 +15,13 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('task_name');
+            $table->string('user_name');
+            $table->string('task_description');
+            $table->string('task_completion_date');
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
+            $table->string('task_status');
             $table->timestamps();
         });
     }
