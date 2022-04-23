@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('task_name');
             $table->string('user_name');
             $table->string('task_description');
-            $table->string('task_completion_date');
+            $table->date('task_completion_date');
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->string('task_status');

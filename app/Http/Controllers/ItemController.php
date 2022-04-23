@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -13,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        // /API/items -> hits this index function -> get all tasks ordered by date-created
+        return Item::orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -34,7 +36,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // when receive a request -> store it
+        // /API/items/store -> hits this store function -> save new item
+        $newItem = new Item;
+        $newItem->task_name = $request->item["task_name"];
+        $newItem->user_name = $request->item["user_name"];
+        $newItem->task_description = $request->item["task_description"];
+        $newItem->task_completion_date = $request->item["task_completion_date"];
+        $newItem->task_status = $request->item["task_status"];
+        $newItem->save();
+
+        return $newItem;
     }
 
     /**

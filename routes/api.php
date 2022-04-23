@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/items', [ItemController::class, 'index']);
 Route::prefix('/item')->group(function() {
-    Router::post('/store', [ItemController::class, 'store']);
-    Router::put('/id', [ItemController::class, 'update']);
-    Router::delete('/id', [ItemController::class, 'destroy']);
+    Route::post('/store', [ItemController::class, 'store']);
+    Route::put('/id', [ItemController::class, 'update']);
+    Route::delete('/id', [ItemController::class, 'destroy']);
     }
 );
