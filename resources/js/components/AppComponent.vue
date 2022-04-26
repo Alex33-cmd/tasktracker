@@ -6,6 +6,8 @@
 
 <script>
     export default {
-        
+        mounted() {
+            console.log('AppComponent mounted.')
+        }
     }
 </script>
