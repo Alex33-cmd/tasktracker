@@ -29,10 +29,6 @@ Vue.component(
     "app-component",
     require("./components/AppComponent.vue").default
 );
-Vue.component(
-    "example-component",
-    require("./components/ExampleComponent.vue").default
-);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
