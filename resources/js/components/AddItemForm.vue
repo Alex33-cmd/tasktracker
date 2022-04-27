@@ -21,9 +21,6 @@
 </template>
 
 <script>
-// import axios from "axios";
-// import { response } from "express";
-
     export default {
         data: function () {
             return {
@@ -38,21 +35,6 @@
         },
         methods: {
             addItem() {
-                // if( this.item.name == '' ) {
-                //     return;
-                // }
-                
-                // axios.post('api/item/store', {
-                //     item: this.item
-                // })
-                // .then( response => {
-                //     if( response.status == 201 ) {
-                //         this.item.name = '';
-                //     }
-                // })
-                // .catch( error => {
-                //     console.log( error );
-                // })
 
                 const apiUrlStore = 'api/item/store';
 
@@ -118,9 +100,10 @@
 
     .plus {
         font-size: 30px;
-        width: 100%;
-        /* width: 50px; */
-        height: 50px;
+        /* width: 100%; */
+        width: 150px;
+        /* height: 50px; */
+        margin: 10px;
     }
     .active {
         color: #000000;

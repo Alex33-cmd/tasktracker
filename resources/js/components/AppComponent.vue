@@ -1,10 +1,14 @@
 <template>
     <div class="todoListContainer">
         <div class="heading">
-            <h2 id="title">Task Tracker App</h2>
+            <h2 class="title">Task Tracker App</h2>
             <add-item-form />
         </div>
-        <list-view :itemProps="itemsFromDB" />
+        <div class="heading">
+            <h2 class="title">Task Tracker App</h2>
+            <list-view :itemProps="itemsFromDB" />
+        </div>
+        
     </div>
 </template>
 
@@ -49,7 +53,7 @@ import listView from "./ListView.vue"
                 // })
             },
         },
-        mounted() {
+        created() {
             this.getList()
         }
     }
@@ -57,14 +61,18 @@ import listView from "./ListView.vue"
 
 <style lang="scss" scoped>
 .todoListContainer {
-    width: 350px;
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    width: 100%;
     margin: auto;
     .heading {
         background: #e6e6e6;
-        padding: 10px;
-        #title {
+        padding: 20px;
+        .title {
             text-align: center;
-            }
+        }
     }
 }
 

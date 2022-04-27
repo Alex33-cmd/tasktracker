@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="itemsListContainer">
         <div v-for="(itemProp, index) in itemProps" :key="index">
             <list-item
                 :item="itemProp"
@@ -21,10 +21,19 @@ import listItem from "./ListItem.vue"
 </script>
 
 <style lang="scss" scoped>
-.item {
-    background: #e6e6e6;
-    padding: 5px;
-    margin-top: 5px;
-    height: 50px;
+.itemsListContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .item {
+        display: block;
+        background:#f7f7f7;
+        position: relative;
+        z-index: 1;
+        padding: 10px 0;
+        margin: 10px auto;
+        width: 100%;
+    }
 }
+
 </style>
