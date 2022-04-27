@@ -1,11 +1,12 @@
 <template>
     <div>
-        List Item
+        {{item.id}}
+        {{item.task_name}}
     </div>
 </template>
 
 <script>
     export default {
-        
+        props: ['item']
     }
 </script>

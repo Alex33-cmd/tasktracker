@@ -54,7 +54,7 @@
                 //     console.log( error );
                 // })
 
-                const apiUrl = 'api/item/store';
+                const apiUrlStore = 'api/item/store';
 
                 // post body data 
                 const bodyData = {
@@ -62,7 +62,7 @@
                 };
 
                 // request options
-                const options = {
+                const optionsPOST = {
                     method: 'POST',
                     body: JSON.stringify(bodyData),
                     headers: {
@@ -71,7 +71,7 @@
                 }
 
                 // send POST request
-                fetch(apiUrl, options)
+                fetch(apiUrlStore, optionsPOST)
                     .then(res => {
                         if( res.status == 201 ) {
                             // clearing fields
