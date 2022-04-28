@@ -78,16 +78,17 @@
     justify-content: center;
     align-items: center;
 
+
     input, select {
+        box-sizing: border-box;
         display: block;
         background:#f7f7f7;
         border: none;
         outline: none;
-        appearance: none;
+        /* appearance: none; */
         position: relative;
         z-index: 1;
-        outline: none;
-        padding: 10px 0;
+        padding: 10px;
         margin: 10px auto;
         width: 100%;
     }

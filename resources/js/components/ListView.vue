@@ -25,15 +25,6 @@ import listItem from "./ListItem.vue"
     display: flex;
     flex-direction: column;
     justify-content: center;
-    .item {
-        display: block;
-        background:#f7f7f7;
-        position: relative;
-        z-index: 1;
-        padding: 10px 0;
-        margin: 10px auto;
-        width: 100%;
-    }
 }
 
 </style>
