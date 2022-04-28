@@ -10,12 +10,12 @@
         </select>
         <input type="text" v-model="itemData.task_description" placeholder="Описание задачи" />
         <input type="date" v-model="itemData.task_completion_date" :class="[ itemData.task_completion_date ? 'active' : 'inactive']" />
-        <select v-model="itemData.task_status">
+        <!-- <select v-model="itemData.task_status">
             <option value="" selected disabled hidden>Статус задачи</option>
             <option value="добавлена">добавлена</option>
             <option value="в работе">в работе</option>
             <option value="завершена">завершена</option>
-        </select>
+        </select> -->
         <button @click="addItem()" :class="[ itemData.task_name ? 'active' : 'inactive', 'plus']"><b>+</b></button>
     </div>
 </template>
@@ -29,7 +29,7 @@
                     user_name: "",
                     task_description: "",
                     task_completion_date: "",
-                    task_status: ""
+                    task_status: "добавлена"
                 }
             }
         },
@@ -60,6 +60,7 @@
                             for (const prop of Object.getOwnPropertyNames(this.itemData)) {
                                 this.itemData[prop] = '';
                             }
+                            this.itemData.task_status = "добавлена";
                         }
                     })
                     .catch( error => {

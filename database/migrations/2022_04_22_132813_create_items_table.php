@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
             $table->date('task_completion_date');
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
-            $table->string('task_status');
+            $table->string('task_status')->default('добавлена');
             $table->timestamps();
         });
     }
