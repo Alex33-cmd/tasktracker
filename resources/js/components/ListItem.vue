@@ -12,7 +12,7 @@
             <option value="в работе">в работе</option>
             <option value="завершена">завершена</option>
         </select>
-        <span v-else>завершена</span>
+        <span v-else>завершена {{completionDate()}}</span>
 
         <!-- <p><span class="item-title">Статус: </span>{{item.task_status}}</p> -->
         <p><span class="item-title">Дата создания: </span>{{item.created_at}}</p>
@@ -27,20 +27,33 @@
 
         data: function () {
                 return {
-                    selected: ''
+                    selected: '',
+                    date_completed: ''
                 }
         },
-
         methods: {
+            completionDate() {
+                // Set completion date
+                const date = new Date();
+                const day = `${date.getDate()}`.padStart(2, 0);
+                const month = `${date.getMonth() + 1}`.padStart(2, 0);
+                const year = date.getFullYear();
+                this.date_completed = `${year} ${month} ${day}`;
+                return this.date_completed;
+            },
             updateCheck() {
                 if (this.selected == 'завершена') {
-                    
-                    /*
-                    const apiUrlStore = 'api/item/';
+
+                    this.item.completed = true;
+                    this.item.completed_at = this.date_completed;
+                    this.item.task_status = 'завершена';
+
+                    // PUT task status to DB
+                    const apiUrlStore = 'api/item/' + this.item.id;
 
                     // put body data 
                     const bodyData = {
-                        item: this.itemData
+                        item: this.item
                     };
 
                     // request options
@@ -55,18 +68,11 @@
                     // send PUT request
                     fetch(apiUrlStore, optionsPUT)
                         .then(res => {
-                            if( res.status == 201 ) {
-                                // clearing fields
-                                for (const prop of Object.getOwnPropertyNames(this.itemData)) {
-                                    this.itemData[prop] = '';
-                                }
-                                this.itemData.task_status = "добавлена";
-                            }
+                            console.log('data successfuly saved');
                         })
                         .catch( error => {
                         console.log( error );
                     })
-                    */
                 }
             },
 
