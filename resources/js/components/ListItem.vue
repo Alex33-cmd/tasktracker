@@ -77,7 +77,26 @@
             },
 
             removeItem() {
-                
+
+                // DELETE task status to DB
+                const apiUrlDelete = 'api/item/' + this.item.id;
+
+                // request options
+                const optionsDELETE = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                // send DELETE request
+                fetch(apiUrlDelete, optionsDELETE)
+                    .then(res => {
+                        console.log('data successfuly removed');
+                    })
+                    .catch( error => {
+                    console.log( error );
+                })
             }
         }
     }
