@@ -15,8 +15,8 @@
         <span v-else>завершена {{completionDate()}}</span>
 
         <!-- <p><span class="item-title">Статус: </span>{{item.task_status}}</p> -->
-        <p><span class="item-title">Дата создания: </span>{{item.created_at}}</p>
-        <p><span class="item-title">Дата изменения: </span>{{item.updated_at}}</p>
+        <p><span class="item-title">Дата создания: </span>{{dateFormat(item.created_at)}}</p>
+        <p><span class="item-title">Дата изменения: </span>{{dateFormat(item.updated_at)}}</p>
         <button @click="removeItem()" class="trashcan">Удалить</button>
     </div>
 </template>
@@ -32,13 +32,19 @@
                 }
         },
         methods: {
+            dateFormat(dateFromDB){
+                return new Date(dateFromDB).toISOString().slice(0, 19).replace('T', ' ')
+            },
             completionDate() {
                 // Set completion date
                 const date = new Date();
+                const second = `${date.getSeconds()}`.padStart(2, 0);
+                const minute = `${date.getMinutes()}`.padStart(2, 0);
+                const hour = `${date.getHours()}`.padStart(2, 0);
                 const day = `${date.getDate()}`.padStart(2, 0);
                 const month = `${date.getMonth() + 1}`.padStart(2, 0);
                 const year = date.getFullYear();
-                this.date_completed = `${year} ${month} ${day}`;
+                this.date_completed = `${year} ${month} ${day} ${hour} ${minute} ${second}`;
                 return this.date_completed;
             },
             updateCheck() {
