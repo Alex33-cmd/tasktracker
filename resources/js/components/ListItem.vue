@@ -1,12 +1,12 @@
 <template>
-    <div :class="[selected == 'завершена' ? 'completed' : '', item]">
+    <div :class="[item.task_status == 'завершена' ? 'completed' : '', item]">
         <h3><span class="item-title">{{item.id}} </span>{{item.task_name}}</h3>
         <p><span class="item-title">Исполнитель: </span>{{item.user_name}}</p>
         <p><span class="item-title">Описание: </span>{{item.task_description}}</p>
         <p><span class="item-title">Дата завершения: </span>{{item.task_completion_date}}</p>
 
         <span class="item-title">Статус: </span>
-        <select v-if="selected !== 'завершена'" @change="updateCheck()" v-model="selected">
+        <select v-if="item.task_status !== 'завершена'" @change="updateCheck()" v-model="selected">
             <option value="" selected disabled hidden>{{item.task_status}}</option>
             <!-- <option value="добавлена">добавлена</option> -->
             <option value="в работе">в работе</option>
@@ -48,32 +48,36 @@
                     this.item.completed_at = this.date_completed;
                     this.item.task_status = 'завершена';
 
-                    // PUT task status to DB
-                    const apiUrlStore = 'api/item/' + this.item.id;
-
-                    // put body data 
-                    const bodyData = {
-                        item: this.item
-                    };
-
-                    // request options
-                    const optionsPUT = {
-                        method: 'PUT',
-                        body: JSON.stringify(bodyData),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
-
-                    // send PUT request
-                    fetch(apiUrlStore, optionsPUT)
-                        .then(res => {
-                            console.log('data successfuly saved');
-                        })
-                        .catch( error => {
-                        console.log( error );
-                    })
+                } else {
+                    this.item.task_status = 'в работе';
                 }
+
+                // PUT task status to DB
+                const apiUrlStore = 'api/item/' + this.item.id;
+
+                // put body data 
+                const bodyData = {
+                    item: this.item
+                };
+
+                // request options
+                const optionsPUT = {
+                    method: 'PUT',
+                    body: JSON.stringify(bodyData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                // send PUT request
+                fetch(apiUrlStore, optionsPUT)
+                    .then(res => {
+                        // console.log('data successfuly saved');
+                    })
+                    .catch( error => {
+                    console.log( error );
+                })
+                
             },
 
             removeItem() {
@@ -92,7 +96,7 @@
                 // send DELETE request
                 fetch(apiUrlDelete, optionsDELETE)
                     .then(res => {
-                        console.log('data successfuly removed');
+                        // console.log('data successfuly removed');
                     })
                     .catch( error => {
                     console.log( error );

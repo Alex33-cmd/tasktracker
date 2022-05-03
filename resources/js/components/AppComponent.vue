@@ -40,7 +40,6 @@ import listView from "./ListView.vue"
                 }
 
                 this.itemsFromDB = await (await fetch(apiUrlGET, optionsGET)).json()
-                console.log(this.itemsFromDB);
 
                 // send GET request
                 // fetch(apiUrlGET, optionsGET)
