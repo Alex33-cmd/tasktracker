@@ -7,6 +7,14 @@
         </div>
         <div class="heading">
             <h2 class="title">Task Tracker App</h2>
+            <span>Сортировка: </span>
+            <select @change="getList()" v-model="taskFilter">
+                <option value="user_name">Исполнитель</option>
+                <option value="task_status">Статус</option>
+                <option value="task_completion_date">Дата завершения</option>
+                <option value="completed_at">Завершена</option>
+                <option value="created_at">Дата создания</option>
+            </select>
             <list-view 
                 :itemProps="itemsFromDB"
                 v-on:reloadlist="getList()" />
@@ -26,13 +34,14 @@ import listView from "./ListView.vue"
         },
         data: function () {
             return {
-                itemsFromDB: []
+                itemsFromDB: [],
+                taskFilter: 'created_at'
             }
         },
         methods: {
             async getList() {
 
-                const apiUrlGET = 'api/items';
+                const apiUrlGET = 'api/items/' + this.taskFilter;
 
                 // request options
                 const optionsGET = {

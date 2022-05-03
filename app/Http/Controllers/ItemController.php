@@ -13,10 +13,10 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($filter)
     {
         // /API/items -> hits this index function -> get all tasks ordered by date-created
-        return Item::orderBy('created_at', 'DESC')->get();
+        return Item::orderBy($filter, 'DESC')->get();
     }
 
     /**
