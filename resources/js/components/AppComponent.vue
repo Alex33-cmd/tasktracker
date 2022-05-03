@@ -2,11 +2,14 @@
     <div class="todoListContainer">
         <div class="heading">
             <h2 class="title">Task Tracker App</h2>
-            <add-item-form />
+            <add-item-form
+            v-on:reloadlist="getList()" />
         </div>
         <div class="heading">
             <h2 class="title">Task Tracker App</h2>
-            <list-view :itemProps="itemsFromDB" />
+            <list-view 
+                :itemProps="itemsFromDB"
+                v-on:reloadlist="getList()" />
         </div>
         
     </div>

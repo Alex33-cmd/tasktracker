@@ -73,6 +73,7 @@
                 fetch(apiUrlStore, optionsPUT)
                     .then(res => {
                         // console.log('data successfuly saved');
+                        this.$emit('itemchanged');
                     })
                     .catch( error => {
                     console.log( error );
@@ -97,6 +98,8 @@
                 fetch(apiUrlDelete, optionsDELETE)
                     .then(res => {
                         // console.log('data successfuly removed');
+                        // emit to ListView
+                        this.$emit('itemchanged');
                     })
                     .catch( error => {
                     console.log( error );

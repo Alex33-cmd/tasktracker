@@ -61,6 +61,7 @@
                                 this.itemData[prop] = '';
                             }
                             this.itemData.task_status = "добавлена";
+                            this.$emit('reloadlist');
                         }
                     })
                     .catch( error => {
